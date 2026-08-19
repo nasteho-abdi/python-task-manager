@@ -8,9 +8,16 @@ def add_task():
         print("Task cannot be empty.")
         return
 
+    priority = input("Enter priority (high/medium/low): ").strip().lower()
+
+    if priority not in ["high", "medium", "low"]:
+        print("Invalid priority. Setting priority to medium.")
+        priority = "medium"
+
     task = {
         "name": task_name,
-        "completed": False
+        "completed": False,
+        "priority": priority
     }
 
     tasks.append(task)
@@ -22,9 +29,15 @@ def view_tasks():
         return
 
     print("\nYour Tasks:")
+
     for number, task in enumerate(tasks, start=1):
         status = "✓ Completed" if task["completed"] else "Pending"
-        print(f"{number}. {task['name']} - {status}")
+
+        print(
+            f"{number}. {task['name']} "
+            f"- {status} "
+            f"- Priority: {task['priority'].capitalize()}"
+        )
 
 
 def delete_task():
