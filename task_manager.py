@@ -2,7 +2,11 @@ tasks = []
 
 
 def add_task():
-    task_name = input("Enter a task: ")
+    task_name = input("Enter a task: ").strip()
+
+    if not task_name:
+        print("Task cannot be empty.")
+        return
 
     task = {
         "name": task_name,
